@@ -18,8 +18,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "teachers")
+public class Teacher {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +52,10 @@ public class Student {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	public Student() {
-		super();
+	// other getters and setters removed for brevity
+
+	public Teacher() {
+
 	}
 
 	public String getfName() {
@@ -112,11 +114,6 @@ public class Student {
 		this.updatedAt = updatedAt;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	// other getters and setters removed for brevity
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -126,4 +123,9 @@ public class Student {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
+
+	public Long getId() {
+		return id;
+	}
+
 }

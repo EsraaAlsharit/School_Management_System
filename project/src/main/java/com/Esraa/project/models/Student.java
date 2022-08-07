@@ -23,11 +23,11 @@ public class Student {
 
 	@NotEmpty(message = "First name is required!")
 	@Size(min = 3, max = 30, message = "First name must be between 3 and 30 characters")
-	private String fname;
+	private String fName;
 
 	@NotEmpty(message = "Last name is required!")
 	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
-	private String lname;
+	private String lName;
 
 	@NotEmpty(message = "Email is required!")
 	@Email(message = "Please enter a valid email!")

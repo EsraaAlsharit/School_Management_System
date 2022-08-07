@@ -8,6 +8,7 @@ import com.Esraa.project.repositories.StudentRepository;
 @Service
 public class StudentServices {
 	@Autowired
-	StudentRepository studentRepository;
+	public StudentRepository studentRepository;
+	
 	
 }

@@ -3,11 +3,13 @@ package com.Esraa.project.models;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -15,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name = "student")
 public class Student {
 
 	@Id
@@ -50,6 +54,10 @@ public class Student {
 	
 	
 	
+	public Student() {
+		super();
+	}
+
 	public String getfName() {
 		return fName;
 	}

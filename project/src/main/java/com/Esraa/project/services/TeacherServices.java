@@ -32,15 +32,9 @@ public class TeacherServices {
 		}
 	}
 
-	public Teacher updateTeacher(Long id, String title, String desc, String lang, Integer numOfPages) {
+	public Teacher updateTeacher(Long id, Teacher teacher) {
 		Teacher optionalTeacher = findTeacherBy(id);
 
-		// optionalTeacher.setTitle(title);
-		// optionalTeacher.setDescription(desc);
-		// optionalTeacher.setId(id);
-		// optionalTeacher.setLanguage(lang);
-		// optionalTeacher.setNumberOfPages(numOfPages);
-		// Optional<Teacher> optionalTeacher1 = teacherRepository.findById(id);
 		return teacherRepository.save(optionalTeacher);
 
 	}

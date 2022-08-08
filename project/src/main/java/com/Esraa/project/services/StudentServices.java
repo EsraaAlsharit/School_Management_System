@@ -33,16 +33,8 @@ public class StudentServices {
 		}
 	}
 
-	public Student updateStudent(Long id, String title, String desc, String lang, Integer numOfPages) {
-		// TODO Auto-generated method stub
+	public Student updateStudent(Long id, Student student) {
 		Student optionalStudent = findStudentBy(id);
-
-		// optionalStudent.setTitle(title);
-		// optionalStudent.setDescription(desc);
-		// optionalStudent.setId(id);
-		// optionalStudent.setLanguage(lang);
-		// optionalStudent.setNumberOfPages(numOfPages);
-		// Optional<Student> optionalStudent1 = studentRepository.findById(id);
 		return studentRepository.save(optionalStudent);
 
 	}

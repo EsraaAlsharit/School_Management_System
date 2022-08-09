@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -19,16 +21,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "guardians")
 public class Guardians {
-	 @Id
+	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
-	 @NotNull(message="please enter your first name")
-	 @Size(min = 3, max = 10, message ="first name need tb be between 3 and 10")
-	 private String fName;
+	 	private Long id;
 	 
-	 @NotNull(message ="please enter your first name")
-	 @Size(min = 3, max =10 , message ="Last naem should be between 3 and 10")
-	 private String lName;
+		 @NotNull(message="please enter your first name")
+		 @Size(min = 3, max = 10, message ="first name need tb be between 3 and 10")
+		 private String fName;
+		 
+		 @NotNull(message ="please enter your first name")
+		 @Size(min = 3, max =10 , message ="Last naem should be between 3 and 10")
+		 private String lName;
 	 
 		@NotEmpty(message = "Email is required!")
 		@Email(message = "Please enter a valid email!")
@@ -48,6 +51,7 @@ public class Guardians {
 	    private Date createdAt;
 	    @DateTimeFormat(pattern="yyyy-MM-dd")
 	    private Date updatedAt;
+	    
 		public String getfName() {
 			return fName;
 		}
@@ -93,8 +97,16 @@ public class Guardians {
 		public Long getId() {
 			return id;
 		}
-		public Guardians() {
+		public Guardians() {}
 		
+		@PrePersist
+		protected void onCreate() {
+			this.createdAt = new Date();
+		}
+
+		@PreUpdate
+		protected void onUpdate() {
+			this.updatedAt = new Date();
 		}
 	
 }

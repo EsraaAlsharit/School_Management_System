@@ -55,9 +55,9 @@ public class Teacher {
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	//relations
-	@OneToMany(mappedBy = "teacher",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	private List <Subject> subjects;
+	// relations
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Subject> subjects;
 	// other getters and setters removed for brevity
 
 	public Teacher() {
@@ -120,6 +120,11 @@ public class Teacher {
 		this.updatedAt = updatedAt;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	// other getters and setters removed for brevity
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -129,9 +134,4 @@ public class Teacher {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-
-	public Long getId() {
-		return id;
-	}
-
 }

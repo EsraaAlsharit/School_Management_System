@@ -26,33 +26,39 @@ public class Manager {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
 	// private List<Student> students;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
 	// private List<Teacher> teachers;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
 	// private List<Guardians> guardians;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
 	// private List<Subject> Subject;
 
-	@NotEmpty(message = "First name is required")
-	@Size(min = 3, max = 30, message = "First name must be between 3 and 30 characters")
-	private String fname;
+	// @NotEmpty(message = "First name is required")
+	// @Size(min = 3, max = 30, message = "First name must be between 3 and 30
+	// characters")
+	// private String fname;
 
-	@NotEmpty(message = "Last name is required!")
-	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
-	private String lname;
+	// @NotEmpty(message = "Last name is required!")
+	// @Size(min = 3, max = 30, message = "Last name must be between 3 and 30
+	// characters")
+	// private String lname;
 
 	@NotEmpty(message = "Last name is required!")
 	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
 	private String userName;
 
-	@NotEmpty(message = "Email is required!")
-	@Email(message = "Please enter a valid email!")
-	private String email;
+	// @NotEmpty(message = "Email is required!")
+	// @Email(message = "Please enter a valid email!")
+	// private String email;
 
 	@NotEmpty(message = "Password is required!")
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
@@ -78,60 +84,72 @@ public class Manager {
 	}
 
 	// public List<Student> getStudent() {
-	// 	return student;
+	// return student;
 	// }
 
 	// public void setStudent(List<Student> student) {
-	// 	this.student = student;
+	// this.student = student;
 	// }
 
 	// public List<Teacher> getTeacher() {
-	// 	return teacher;
+	// return teacher;
 	// }
 
 	// public void setTeacher(List<Teacher> teacher) {
-	// 	this.teacher = teacher;
+	// this.teacher = teacher;
 	// }
 
 	// public List<Guardians> getGuardians() {
-	// 	return guardians;
+	// return guardians;
 	// }
 
 	// public void setGuardians(List<Guardians> guardians) {
-	// 	this.guardians = guardians;
+	// this.guardians = guardians;
 	// }
 
 	// public List<Subject> getSubject() {
-	// 	return Subject;
+	// return Subject;
 	// }
 
 	// public void setSubject(List<Subject> subject) {
-	// 	Subject = subject;
+	// Subject = subject;
 	// }
 
-	public String getFname() {
-		return fname;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getLname() {
-		return lname;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
+	// public String getFname() {
+	// 	return fname;
+	// }
 
-	public String getEmail() {
-		return email;
-	}
+	// public void setFname(String fname) {
+	// 	this.fname = fname;
+	// }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	// public String getLname() {
+	// 	return lname;
+	// }
+
+	// public void setLname(String lname) {
+	// 	this.lname = lname;
+	// }
+
+	// public String getEmail() {
+	// 	return email;
+	// }
+
+	// public void setEmail(String email) {
+	// 	this.email = email;
+	// }
 
 	public String getPassword() {
 		return password;

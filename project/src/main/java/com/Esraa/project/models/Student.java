@@ -52,8 +52,8 @@ public class Student {
 	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 
-	@ManyToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
-	@JoinTable(name = "subjects_students",inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "subject_id"))
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "subjects_students", inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjects;
 
 	@Column(updatable = false)
@@ -63,8 +63,9 @@ public class Student {
 	private Date updatedAt;
 
 	public Student() {
-		super();
+
 	}
+
 
 	public String getfName() {
 		return fName;

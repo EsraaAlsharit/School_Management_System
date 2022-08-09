@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.Esraa.project.models.LoginUser;
+import com.Esraa.project.models.Student;
+import com.Esraa.project.models.Teacher;
 import com.Esraa.project.models.User;
 import com.Esraa.project.services.GuardiansService;
 import com.Esraa.project.services.StudentServices;
@@ -86,9 +88,13 @@ public class HomeController {
             return "userHome.jsp";
         }
         if (session.getAttribute("teacher_id") != null) {
+            Teacher teacher = teacherService.findTeacherBy((Long) session.getAttribute("teacher_id"));
+            model.addAttribute("Teacher", teacher);
             return "teacherHome.jsp";
         }
         if (session.getAttribute("student_id") != null) {
+            Student student = studentService.findStudentBy((Long) session.getAttribute("student_id"));
+            model.addAttribute("Student", student);
             return "studentHome.jsp";
         } else {
             return "redirect:/";

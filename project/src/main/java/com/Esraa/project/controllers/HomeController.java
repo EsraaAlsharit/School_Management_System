@@ -38,9 +38,9 @@ public class HomeController {
         if (session.getAttribute("user_id") == null) {
             model.addAttribute("newUser", new User());
             model.addAttribute("newLogin", new LoginUser());
-            return "forms.jsp";
+            return "index.jsp";
         } else {
-            return "redirect:/shows";
+            return "redirect:/index";
         }
     }
 
@@ -55,28 +55,16 @@ public class HomeController {
         }
     }
 
-    // @PostMapping("/register")
-    // public String register(@Valid @ModelAttribute("newTeacher") Teacher newUser,
-    // BindingResult result, Model model, HttpSession session) {
-    // teacherService.register(newUser, result);
-    // if (result.hasErrors()) {
-    // model.addAttribute("newLogin", new LoginUser());
-    // return "forms.jsp";
-    // }
-    // session.setAttribute("user_id", newUser.getId());
-    // return "redirect:/shows";
-    // }
-
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser,
             BindingResult result, Model model, HttpSession session) {
         userServ.register(newUser, result);
         if (result.hasErrors()) {
             model.addAttribute("newLogin", new LoginUser());
-            return "forms.jsp";
+            return "index.jsp";
         }
         session.setAttribute("user_id", newUser.getId());
-        return "redirect:/shows";
+        return "redirect:/index";
     }
 
     @PostMapping("/login")
@@ -85,10 +73,26 @@ public class HomeController {
         userServ.login(newLogin, result, session);
         if (result.hasErrors()) {
             model.addAttribute("newUser", new User());
-            return "forms.jsp";
+            return "index.jsp";
         }
+        return "redirect:/index";
+    }
 
-        return "redirect:/shows";
+    @GetMapping("/index") // add form
+    public String New(Model model, HttpSession session) {
+        if (session.getAttribute("user_id") != null) {
+            User user = userServ.findUserBy((Long) session.getAttribute("user_id"));
+            model.addAttribute("User", user);
+            return "userHome.jsp";
+        }
+        if (session.getAttribute("teacher_id") != null) {
+            return "teacherHome.jsp";
+        }
+        if (session.getAttribute("student_id") != null) {
+            return "studentHome.jsp";
+        } else {
+            return "redirect:/";
+        }
     }
 
 }

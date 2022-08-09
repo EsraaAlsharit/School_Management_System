@@ -31,6 +31,8 @@ public class UserService {
 		return userRepo.findAll();
 	}
 
+	
+
 	public User findUserBy(Long id) {
 		Optional<User> optionalTeacher = userRepo.findById(id);
 		if (optionalTeacher.isPresent()) {

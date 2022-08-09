@@ -3,6 +3,8 @@ package com.Esraa.project.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,41 +76,64 @@ public class UserService {
 		}
 	}
 
-	public User login(LoginUser newLogin, BindingResult result) {
+	public Object login(LoginUser newLogin, BindingResult result, HttpSession session) {
 		if (result.hasErrors()) {
 			return null;
 		}
 		Optional<User> potentialUser = userRepo.findByEmail(newLogin.getEmail());
 		Optional<Teacher> potentialTeacher = teacherRepository.findByEmail(newLogin.getEmail());
 		Optional<Student> potentialStudent = studentRepository.findByEmail(newLogin.getEmail());
-		if (!potentialUser.isPresent()) {
-			result.rejectValue("email", "Unique", "Unknown email!");
-			return null;
-		} else if (!potentialTeacher.isPresent()) {
-			result.rejectValue("email", "Unique", "Unknown email!");
-			return null;
-		} else if (!potentialStudent.isPresent()) {
-			result.rejectValue("email", "Unique", "Unknown email!");
-			return null;
-		}
+		if (potentialUser.isPresent()) {
+			User user = potentialUser.get();
+			if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+				result.rejectValue("password", "Matches", "Invalid Password!");
+			} else {
+				session.setAttribute("user_id", user.getId());
+				return user;
+			}
 
-		User user = potentialUser.get();
-		if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
-			result.rejectValue("password", "Matches", "Invalid Password!");
-		}
-		Teacher teacher = potentialTeacher.get();
-		if (!BCrypt.checkpw(newLogin.getPassword(), teacher.getPassword())) {
-			result.rejectValue("password", "Matches", "Invalid Password!");
-		}
-		Student student = potentialStudent.get();
-		if (!BCrypt.checkpw(newLogin.getPassword(), student.getPassword())) {
-			result.rejectValue("password", "Matches", "Invalid Password!");
-		}
-		if (result.hasErrors()) {
-			return null;
+		} else if (potentialTeacher.isPresent()) {
+			Teacher teacher = potentialTeacher.get();
+			if (!BCrypt.checkpw(newLogin.getPassword(), teacher.getPassword())) {
+				result.rejectValue("password", "Matches", "Invalid Password!");
+			} else {
+				session.setAttribute("teacher_id", teacher.getId());
+				return teacher;
+			}
+
+		} else if (potentialStudent.isPresent()) {
+			Student student = potentialStudent.get();
+			if (!BCrypt.checkpw(newLogin.getPassword(), student.getPassword())) {
+				result.rejectValue("password", "Matches", "Invalid Password!");
+			} else {
+				session.setAttribute("student_id", student.getId());
+				return student;
+			}
+
 		} else {
-			return user;
+			result.rejectValue("email", "Unique", "Unknown email!");
 		}
+		return null;
 	}
+
+	// public User login(LoginUser newLogin, BindingResult result) {
+	// if (result.hasErrors()) {
+	// return null;
+	// }
+	// Optional<User> potentialUser = userRepo.findByEmail(newLogin.getEmail());
+	// if (!potentialUser.isPresent()) {
+	// result.rejectValue("email", "Unique", "Unknown email!");
+	// return null;
+	// }
+	// User user = potentialUser.get();
+	// if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+	// result.rejectValue("password", "Matches", "Invalid Password!");
+	// }
+	// if (result.hasErrors()) {
+	// return null;
+	// } else {
+	// return user;
+	// }
+	// }
 
 }

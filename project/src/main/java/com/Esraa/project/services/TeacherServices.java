@@ -7,10 +7,11 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
-
+import com.Esraa.project.models.LoginUser;
 import com.Esraa.project.models.Teacher;
 import com.Esraa.project.repositories.StudentRepository;
 import com.Esraa.project.repositories.TeacherRepository;
+import com.Esraa.project.repositories.UserRepo;
 
 @Service
 public class TeacherServices {
@@ -18,6 +19,8 @@ public class TeacherServices {
 	public TeacherRepository teacherRepository;
 	@Autowired
 	public StudentRepository studentRepository;
+	@Autowired
+	public UserRepo userRepo;
 
 	// returns all the teachers
 	public List<Teacher> allTeachers() {
@@ -47,6 +50,24 @@ public class TeacherServices {
 		teacherRepository.deleteById(id);
 	}
 
-
+	public Teacher login(LoginUser newLogin, BindingResult result) {
+		if (result.hasErrors()) {
+			return null;
+		}
+		Optional<Teacher> potentialTeacher = teacherRepository.findByEmail(newLogin.getEmail());
+		if (!potentialTeacher.isPresent()) {
+			result.rejectValue("email", "Unique", "Unknown email!");
+			return null;
+		}
+		Teacher user = potentialTeacher.get();
+		if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+			result.rejectValue("password", "Matches", "Invalid Password!");
+		}
+		if (result.hasErrors()) {
+			return null;
+		} else {
+			return user;
+		}
+	}
 
 }

@@ -37,7 +37,6 @@ public class HomeController {
     public String index(Model model, HttpSession session) {
         if (session.getAttribute("user_id") == null) {
             model.addAttribute("newUser", new User());
-            model.addAttribute("newUser", new User());
             model.addAttribute("newLogin", new LoginUser());
             return "forms.jsp";
         } else {
@@ -56,6 +55,18 @@ public class HomeController {
         }
     }
 
+    // @PostMapping("/register")
+    // public String register(@Valid @ModelAttribute("newTeacher") Teacher newUser,
+    // BindingResult result, Model model, HttpSession session) {
+    // teacherService.register(newUser, result);
+    // if (result.hasErrors()) {
+    // model.addAttribute("newLogin", new LoginUser());
+    // return "forms.jsp";
+    // }
+    // session.setAttribute("user_id", newUser.getId());
+    // return "redirect:/shows";
+    // }
+
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser,
             BindingResult result, Model model, HttpSession session) {
@@ -71,13 +82,12 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin,
             BindingResult result, Model model, HttpSession session) {
-        User user = userServ.login(newLogin, result);
+        userServ.login(newLogin, result, session);
         if (result.hasErrors()) {
             model.addAttribute("newUser", new User());
             return "forms.jsp";
         }
 
-        session.setAttribute("user_id", user.getId());
         return "redirect:/shows";
     }
 

@@ -3,11 +3,12 @@ package com.Esraa.project.services;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
-
+import com.Esraa.project.models.LoginUser;
 
 import com.Esraa.project.models.Student;
 
@@ -52,7 +53,24 @@ public class StudentServices {
 		studentRepository.deleteById(id);
 	}
 
-
-
+	public Student login(LoginUser newLogin, BindingResult result) {
+		if (result.hasErrors()) {
+			return null;
+		}
+		Optional<Student> potentialStudent = studentRepository.findByEmail(newLogin.getEmail());
+		if (!potentialStudent.isPresent()) {
+			result.rejectValue("email", "Unique", "Unknown email!");
+			return null;
+		}
+		Student user = potentialStudent.get();
+		if (!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+			result.rejectValue("password", "Matches", "Invalid Password!");
+		}
+		if (result.hasErrors()) {
+			return null;
+		} else {
+			return user;
+		}
+	}
 
 }

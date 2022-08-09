@@ -15,7 +15,7 @@
                     <script src="/webjars/jquery/jquery.min.js"></script>
                     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-                    <title>login &  Register</title>
+                    <title>login & Register</title>
                 </head>
 
                 <body>
@@ -26,14 +26,14 @@
 
                         <div class="row mx-5">
                             <div class="col-6">
-                                <h3>Register</h3>
+                                <h3>Register user</h3>
                                 <form:form action="/register" method="post" modelAttribute="newUser">
                                     <div class="form-group">
                                         <label> Name:</label>
                                         <form:input path="fName" class="form-control" />
                                         <form:errors path="fName" class="text-danger" />
                                     </div>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <label> Name:</label>
                                         <form:input path="lName" class="form-control" />
                                         <form:errors path="lName" class="text-danger" />

@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -17,155 +19,146 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name = "managers")
 public class Manager {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
-	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Student> student;
-	
-	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Teacher> teacher;
-	
-	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Guardians> guardians;
-	
-	@OneToMany(mappedBy="manager", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Subject> Subject;
 
-	
-@NotEmpty(message = "First name is required")
-@Size(min = 3, max = 30, message = "First name must be between 3 and 30 characters")
-private String fname;
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
+	// private List<Student> student;
 
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
+	// private List<Teacher> teacher;
 
-@NotEmpty(message = "Last name is required!")
-@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
-private String lname;
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
+	// private List<Guardians> guardians;
 
-@NotEmpty(message = "Email is required!")
-@Email(message = "Please enter a valid email!")
-private String email;
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
+	// FetchType.LAZY)
+	// private List<Subject> Subject;
 
-@NotEmpty(message = "Password is required!")
-@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
-private String password;
+	@NotEmpty(message = "First name is required")
+	@Size(min = 3, max = 30, message = "First name must be between 3 and 30 characters")
+	private String fname;
 
-@Transient
-@NotEmpty(message = "Confirm Password is required!")
-@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
-private String confirm;
+	@NotEmpty(message = "Last name is required!")
+	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
+	private String lname;
 
+	@NotEmpty(message = "Email is required!")
+	@Email(message = "Please enter a valid email!")
+	private String email;
 
-@Column(updatable = false)
-@DateTimeFormat(pattern = "yyyy-MM-dd")
-private Date createdAt;
-@DateTimeFormat(pattern = "yyyy-MM-dd")
-private Date updatedAt;
+	@NotEmpty(message = "Password is required!")
+	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
+	private String password;
 
-public Manager() {
-	
-}
+	@Transient
+	@NotEmpty(message = "Confirm Password is required!")
+	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
+	private String confirm;
 
-public Long getId() {
-	return id;
-}
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
 
+	public Manager() {
 
+	}
 
-public List<Student> getStudent() {
-	return student;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setStudent(List<Student> student) {
-	this.student = student;
-}
+	// public List<Student> getStudent() {
+	// 	return student;
+	// }
 
-public List<Teacher> getTeacher() {
-	return teacher;
-}
+	// public void setStudent(List<Student> student) {
+	// 	this.student = student;
+	// }
 
-public void setTeacher(List<Teacher> teacher) {
-	this.teacher = teacher;
-}
+	// public List<Teacher> getTeacher() {
+	// 	return teacher;
+	// }
 
-public List<Guardians> getGuardians() {
-	return guardians;
-}
+	// public void setTeacher(List<Teacher> teacher) {
+	// 	this.teacher = teacher;
+	// }
 
-public void setGuardians(List<Guardians> guardians) {
-	this.guardians = guardians;
-}
+	// public List<Guardians> getGuardians() {
+	// 	return guardians;
+	// }
 
-public List<Subject> getSubject() {
-	return Subject;
-}
+	// public void setGuardians(List<Guardians> guardians) {
+	// 	this.guardians = guardians;
+	// }
 
-public void setSubject(List<Subject> subject) {
-	Subject = subject;
-}
+	// public List<Subject> getSubject() {
+	// 	return Subject;
+	// }
 
-public String getFname() {
-	return fname;
-}
+	// public void setSubject(List<Subject> subject) {
+	// 	Subject = subject;
+	// }
 
-public void setFname(String fname) {
-	this.fname = fname;
-}
+	public String getFname() {
+		return fname;
+	}
 
-public String getLname() {
-	return lname;
-}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
 
-public void setLname(String lname) {
-	this.lname = lname;
-}
+	public String getLname() {
+		return lname;
+	}
 
-public String getEmail() {
-	return email;
-}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
 
-public void setEmail(String email) {
-	this.email = email;
-}
+	public String getEmail() {
+		return email;
+	}
 
-public String getPassword() {
-	return password;
-}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public void setPassword(String password) {
-	this.password = password;
-}
+	public String getPassword() {
+		return password;
+	}
 
-public String getConfirm() {
-	return confirm;
-}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-public void setConfirm(String confirm) {
-	this.confirm = confirm;
-}
+	public String getConfirm() {
+		return confirm;
+	}
 
-public Date getCreatedAt() {
-	return createdAt;
-}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
 
-public Date getUpdatedAt() {
-	return updatedAt;
-}
-
-public void setUpdatedAt(Date updatedAt) {
-	this.updatedAt = updatedAt;
-}
-
-
-
-
-
-
-
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 }

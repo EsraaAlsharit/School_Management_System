@@ -6,9 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.Esraa.project.models.Manager;
 
-public interface ManagerRepo extends CrudRepository<Manager, Long>{
+public interface ManagerRepository extends CrudRepository<Manager, Long> {
 
-	List<Manager> findAll();
-	
+    List<Manager> findAll();
 
 }

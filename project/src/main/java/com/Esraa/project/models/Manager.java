@@ -26,20 +26,16 @@ public class Manager {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
-	// FetchType.LAZY)
-	// private List<Student> student;
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// private List<Student> students;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
-	// FetchType.LAZY)
-	// private List<Teacher> teacher;
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	// private List<Teacher> teachers;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
-	// FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	// private List<Guardians> guardians;
 
-	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch =
-	// FetchType.LAZY)
+	// @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	// private List<Subject> Subject;
 
 	@NotEmpty(message = "First name is required")
@@ -49,6 +45,10 @@ public class Manager {
 	@NotEmpty(message = "Last name is required!")
 	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
 	private String lname;
+
+	@NotEmpty(message = "Last name is required!")
+	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
+	private String userName;
 
 	@NotEmpty(message = "Email is required!")
 	@Email(message = "Please enter a valid email!")

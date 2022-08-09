@@ -3,6 +3,7 @@ package com.Esraa.project.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +56,7 @@ public class Teacher {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 	//relations
-	@OneToMany(mappedBy = "teacher",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "teacher",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List <Subject> subjects;
 	// other getters and setters removed for brevity
 

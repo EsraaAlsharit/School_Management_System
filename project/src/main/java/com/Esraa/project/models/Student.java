@@ -3,6 +3,7 @@ package com.Esraa.project.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,9 +52,9 @@ public class Student {
 	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "subjects_students", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-	private List<Student> students;
+	@ManyToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+	@JoinTable(name = "subjects_students",inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "subject_id"))
+	private List<Subject> subjects;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

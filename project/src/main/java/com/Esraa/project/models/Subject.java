@@ -3,6 +3,7 @@ package com.Esraa.project.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 @Entity
 @Table(name = "subjects")
@@ -45,14 +45,14 @@ public class Subject {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	//rations 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "subjects_students", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	// rations
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "subjects_students", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
 	private List<User> students;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	 @JoinColumn(name ="teacherId")
-	 private Teacher teacher;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "teacherId")
+	private Teacher teacher;
 
 	public Subject() {
 	}

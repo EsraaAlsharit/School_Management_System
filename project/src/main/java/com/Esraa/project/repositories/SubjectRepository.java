@@ -13,4 +13,7 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
     int countByStudents(Student student);
 
     List<Subject> findByTitle(String title);
+    
+    List <Subject> findAllByStudentId(long id);
+    List <Subject> findByStudentNotContainss(Student student);
 }

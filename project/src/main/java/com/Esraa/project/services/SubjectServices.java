@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Esraa.project.models.Student;
 import com.Esraa.project.models.Subject;
 import com.Esraa.project.models.Teacher;
 import com.Esraa.project.repositories.SubjectRepository;
@@ -43,5 +44,13 @@ public class SubjectServices {
 		subjectRepository.save(sub);
 		
 	}
+	
+	public List<Subject> allSubjectByStudent( long id){
+		return subjectRepository.findAllByStudentId(id);
+	}
+	public List<Subject> otherSubject(Student student){
+		return subjectRepository.findByStudentNotContainss(student);
+	}
+	
 
 }

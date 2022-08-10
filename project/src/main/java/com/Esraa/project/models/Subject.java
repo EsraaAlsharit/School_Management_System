@@ -46,7 +46,7 @@ public class Subject {
 	// rations
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "subjects_students", joinColumns = @JoinColumn(name = "subject_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
-	private List<User> students;
+	private List<Student> students;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "teacherId")
@@ -68,11 +68,13 @@ public class Subject {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<User> getStudents() {
+	
+
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<User> students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 

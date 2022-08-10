@@ -19,7 +19,7 @@
                     <link rel="stylesheet" href="/css/style.css" />
                 </head>
 
-                <body>
+                <body class="bg-light">
                     <div class="cont">
                         <div class="topnav">
                             <h1>New Subject</h1>

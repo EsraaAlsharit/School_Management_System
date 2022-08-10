@@ -18,11 +18,19 @@
                     <title>login & Register</title>
                 </head>
 
-                <body>
-                    <div class="container my-5">
-                        <div class="text-center">
-                            <h1 class="text-info ">Admin</h1>
+                <body class="bg-light">
+                    <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+                        <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-secondary" href="/">I am User</a>
                         </div>
+                    </nav>
+                    <div class="container my-3">
+
+                        <h2 class="text-info ">Admin</h2>
+
 
                         <div class="row mx-5">
                             <div class="col-6">

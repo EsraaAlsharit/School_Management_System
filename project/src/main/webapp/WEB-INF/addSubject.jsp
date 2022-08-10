@@ -25,7 +25,7 @@
                             <h1>New Subject</h1>
                         </div>
                         <div class="body">
-                            <form:form action="#" method="post" modelAttribute="subject">
+                            <form:form action="/add/subject" method="post" modelAttribute="subject">
                                 <p class="errors">
                                     <form:errors path="title" />
                                     <form:errors path="descc" />

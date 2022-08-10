@@ -108,6 +108,7 @@ public class HomeController {
         if (session.getAttribute("teacher_id") != null) {
             Teacher teacher = teacherService.findTeacherBy((Long) session.getAttribute("teacher_id"));
             model.addAttribute("Teacher", teacher);
+            model.addAttribute("subject", subService.AllSubjects());
             return "teacherHome.jsp";
         }
         if (session.getAttribute("student_id") != null) {
@@ -156,7 +157,7 @@ public class HomeController {
     }
 
     @GetMapping("/teacher/{id}")
-    public String Teacher(Model model, HttpSession session,@PathVariable("id") Long id) {
+    public String Teacher(Model model, HttpSession session, @PathVariable("id") Long id) {
         if (session.getAttribute("admin_id") == null) {
             model.addAttribute("teacher", teacherService.findTeacherBy(id));
             return "Teacher.jsp";
@@ -164,8 +165,9 @@ public class HomeController {
             return "redirect:/index";
         }
     }
+
     @GetMapping("/student/{id}")
-    public String Student(Model model, HttpSession session,@PathVariable("id") Long id) {
+    public String Student(Model model, HttpSession session, @PathVariable("id") Long id) {
         if (session.getAttribute("admin_id") == null) {
             model.addAttribute("student", studentService.findStudentBy(id));
             return "Student.jsp";
@@ -188,17 +190,24 @@ public class HomeController {
     // subject
 
     @GetMapping("/add/subject")
-    public String newSubject(@ModelAttribute("subject") Subject subject, Model model) {
-        return "addSubject.jsp";
+    public String newSubject(@ModelAttribute("subject") Subject subject, Model model, HttpSession session) {
+        if (session.getAttribute("admin_id") != null) {
+            return "addSubject.jsp";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/add/subject")
-    public String addSubject(@Valid @ModelAttribute("subject") Subject subject, BindingResult result) {
+    public String addSubject(@Valid @ModelAttribute("subject") Subject subject, BindingResult result, Model model) {
+        if (subService.titlesSubject(subject.getTitle()).size() > 0) {
+            result.rejectValue("title", "Unique", "This title is already in use!");
+        }
         if (result.hasErrors()) {
             return "addSubject.jsp";
         } else {
             subService.creatSubject(subject);
-            return "teacherHome.jsp";
+            return "redirect:/index";
         }
     }
 

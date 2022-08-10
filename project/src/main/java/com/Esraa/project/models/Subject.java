@@ -54,6 +54,39 @@ public class Subject {
 	@JoinColumn(name = "teacherId")
 	private Teacher teacher;
 
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<User> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<User> students) {
+		this.students = students;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
 	public Subject() {
 	}
 

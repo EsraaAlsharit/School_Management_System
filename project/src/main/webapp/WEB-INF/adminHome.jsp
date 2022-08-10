@@ -106,16 +106,20 @@
                                     <thead>
                                         <tr>
                                             <th>Full Name</th>
+                                            <th>Email</th>
                                             <th>number of subjects</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="teacher" items="teachers">
+                                        <c:forEach var="teacher" items="${teachers}">
                                             <tr>
                                                 <td>
                                                     <a href="Teacher/">
                                                         <c:out value="${teacher.fName} ${teacher.lName}" />
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${teacher.email}" />
                                                 </td>
                                                 <td>
                                                     <c:out value="${teacher.subjects.size()}" />
@@ -133,16 +137,22 @@
                                         <tr>
                                             <th>Title</th>
                                             <th>Number of students</th>
-                                            <th>Number of teachers</th>
+                                            <th>Teacher</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="subject" items="subjects">
+                                        <c:forEach var="subject" items="${subjects}">
                                             <tr>
                                                 <td>
-                                                    <a href="subject/${subject}">
+                                                    <a href="subject/${subject.id}">
                                                         <c:out value="${subject.title}" />
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subject.students.size()}" />
+                                                </td>
+                                                <td>
+                                                    <c:out value="${subject.teacher.fName}" />
                                                 </td>
                                             </tr>
                                         </c:forEach>

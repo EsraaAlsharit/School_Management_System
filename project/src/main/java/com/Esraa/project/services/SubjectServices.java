@@ -23,6 +23,10 @@ public class SubjectServices {
 		}
 	}
 
+	public List<Subject> titlesSubject(String title) {
+		return subjectRepository.findByTitle(title);
+	}
+
 	public List<Subject> AllSubjects() {
 		return subjectRepository.findAll();
 	}

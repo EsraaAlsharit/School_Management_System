@@ -44,9 +44,15 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td scope="row"> <a href="#">
-                            <c:out value="course name"></c:out>
-                          </a></td>
+                        <c:forEach var="subject" items="${subjects}">
+                          <td>
+                            <a href="#">
+                              <c:out value="${subject.title}" />
+                            </a>
+                          </td>
+                          <td></td>
+                        </c:forEach>
+
                       </tr>
                     </tbody>
                   </table>

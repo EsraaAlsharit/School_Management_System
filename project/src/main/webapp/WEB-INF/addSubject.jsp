@@ -14,35 +14,43 @@
                     <!-- For any Bootstrap that uses JS or jQuery-->
                     <script src="/webjars/jquery/jquery.min.js"></script>
                     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-                    <title>New Category</title>
+                    <title>Add Subject</title>
                     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
                     <link rel="stylesheet" href="/css/style.css" />
                 </head>
 
                 <body class="bg-light">
-                    <div class="cont">
-                        <div class="topnav">
-                            <h1>New Subject</h1>
+                    <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+                        <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-secondary" href="/index">Home</a>
+                            <a class="nav-link text-secondary" href="/add/subject">Add Subject</a>
+
+                            <a class="nav-link text-secondary" href="/logout">Logout</a>
                         </div>
-                        <div class="body">
-                            <form:form action="/add/subject" method="post" modelAttribute="subject">
-                                <p class="errors">
-                                    <form:errors path="title" />
-                                    <form:errors path="descc" />
-                                </p>
-                                <div class="form">
-                                    <div class="rightForm">
-                                        <form:label path="title">Title: </form:label>
-                                        <form:label path="descc">Description: </form:label>
-                                    </div>
-                                    <div class="leftForm">
-                                        <form:input path="title" />
-                                        <form:input path="descc" />
-                                        <input type="submit" value="Create" />
-                                    </div>
+                    </nav>
+                    <div class="container my-3">
+                        <h2 class="text-info ">Add Subject</h2>
+                        <form:form action="/add/subject" method="post" modelAttribute="subject">
+                            <p class="errors">
+                            </p>
+                            <div class="form">
+                                <div class="form-group my-3">
+                                    <form:label path="title">Title: <span class="text-danger">*</span></form:label>
+                                    <form:input path="title" class="form-control" />
+                                    <form:errors path="title" class="text-danger" />
                                 </div>
-                            </form:form>
-                        </div>
+                                <div class="form-group my-3">
+                                    <form:label path="descc">Description: <span class="text-danger">*</span>
+                                    </form:label>
+                                    <form:textarea path="descc" class="form-control" rows="5" />
+                                    <form:errors path="descc" class="text-danger" />
+                                </div>
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form:form>
                     </div>
                 </body>
 

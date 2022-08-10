@@ -31,11 +31,9 @@ public class Subject {
 	private Long id;
 
 	@Column(unique = true)
-	@NotEmpty(message = "Subject title is required!")
 	@Size(min = 3, max = 30, message = "Subject title must be between 3 and 30 characters")
 	private String title;
 
-	@NotEmpty(message = "Subject description is required!")
 	@Size(min = 3, max = 30, message = "Subject description must be between 3 and 30 characters")
 	private String descc;
 
@@ -54,7 +52,6 @@ public class Subject {
 	@JoinColumn(name = "teacherId")
 	private Teacher teacher;
 
-	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -119,6 +116,5 @@ public class Subject {
 	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-
 
 }

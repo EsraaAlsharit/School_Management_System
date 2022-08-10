@@ -18,13 +18,25 @@
                     <title>login & Register</title>
                 </head>
 
-                <body>
-                    <div class="container my-5 d-flex justify-content-between">
-                        <div class="text-center">
-                            <h1 class="">welcome ${User.fName}, you have to wait until approval</h1>
-                        </div>
+                <body class="bg-light">
+                    <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
 
-                        <a href="/logout">Logout</a>
+                        <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-secondary" href="/index">Home</a>
+
+                            <a class="nav-link text-secondary" href="/logout">Logout</a>
+                        </div>
+                    </nav>
+                    <div class="container my-5 text-center">
+
+                        <h2>Welcome ${User.fName}</h2>
+                        <p>you have to wait until approval for the Manger of the school</h2>
+                        </p>
+
+
+
                     </div>
                 </body>
 

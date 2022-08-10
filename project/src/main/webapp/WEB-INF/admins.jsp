@@ -34,20 +34,20 @@
 
                         <div class="row mx-5">
                             <div class="col-6">
-                                <h3>Register admin</h3>
+                                <h3>Sign Up admin</h3>
                                 <form:form action="/register/admin" method="post" modelAttribute="newUser">
                                     <div class="form-group">
-                                        <label> UserName:</label>
+                                        <label> UserName:<span class="text-danger">*</span></label>
                                         <form:input path="userName" class="form-control" />
                                         <form:errors path="userName" class="text-danger" />
                                     </div>
                                     <div class="form-group">
-                                        <label>Password:</label>
+                                        <label>Password:<span class="text-danger">*</span></label>
                                         <form:password path="password" class="form-control" />
                                         <form:errors path="password" class="text-danger" />
                                     </div>
                                     <div class="form-group">
-                                        <label>Confirm Password:</label>
+                                        <label>Confirm Password:<span class="text-danger">*</span></label>
                                         <form:password path="confirm" class="form-control" />
                                         <form:errors path="confirm" class="text-danger" />
                                     </div>
@@ -55,7 +55,7 @@
                                 </form:form>
                             </div>
                             <div class="col-6">
-                                <h3>Login admin</h3>
+                                <h3>Sign In admin</h3>
                                 <form:form action="/login/admin" method="post" modelAttribute="newLogin">
                                     <div class="form-group">
                                         <label> UserName:</label>

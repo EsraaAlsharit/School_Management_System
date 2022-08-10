@@ -33,30 +33,30 @@
                     <h2 class="text-info ">User</h2>
                     <div class="row align-items-start d-flex justify-content-around mx-5">
                         <div class="col-6 ">
-                            <h3 class="my-2">Sign-Up</h3>
+                            <h3 class="my-2">Sign Up</h3>
                             <form:form action="/register" method="post" modelAttribute="newUser" class="my-3">
                                 <div class="form-group my-3">
-                                    <label>First Name:</label>
+                                    <label>First Name:<span class="text-danger">*</span></label>
                                     <form:input path="fName" class="form-control" />
                                     <form:errors path="fName" class="text-danger" />
                                 </div>
                                 <div class="form-group my-3">
-                                    <label>Last Name:</label>
+                                    <label>Last Name:<span class="text-danger">*</span></label>
                                     <form:input path="lName" class="form-control" />
                                     <form:errors path="lName" class="text-danger" />
                                 </div>
                                 <div class="form-group my-3">
-                                    <label>Email:</label>
+                                    <label>Email:<span class="text-danger">*</span></label>
                                     <form:input path="email" class="form-control" />
                                     <form:errors path="email" class="text-danger" />
                                 </div>
                                 <div class="form-group my-3">
-                                    <label>Password:</label>
+                                    <label>Password:<span class="text-danger">*</span></label>
                                     <form:password path="password" class="form-control" />
                                     <form:errors path="password" class="text-danger" />
                                 </div>
                                 <div class="form-group my-3">
-                                    <label>Confirm Password:</label>
+                                    <label>Confirm Password: <span class="text-danger">*</span></label>
                                     <form:password path="confirm" class="form-control" />
                                     <form:errors path="confirm" class="text-danger" />
                                 </div>
@@ -64,7 +64,7 @@
                             </form:form>
                         </div>
                         <div class="col-6 ">
-                            <h3 class="my-2">Sign-In</h3>
+                            <h3 class="my-2">Sign In</h3>
                             <form:form action="/login" method="post" modelAttribute="newLogin" class="my-3">
                                 <div class="form-group my-3">
                                     <label>Email:</label>

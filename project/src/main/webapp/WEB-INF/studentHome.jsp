@@ -25,7 +25,7 @@
             <div class="cont1">
               <div class="topnav">
                 <div class="lefnav">
-                  <h4>Welcome, <c:out value="${student.fName}"></c:out>!</h4>
+                  <h4>Welcome, <c:out value="${Student.fName}"></c:out>!</h4>
                 </div>
                 <div class="rightnav">
                   <a href="/logout" class="btn btn-primary">Logout</a>
@@ -34,12 +34,12 @@
             </div>
             <div class="body">
               <div class="addcourse">
-                <form action="#" method="post">
-                  <input type="hidden" name="subjectId" value="${subject.id}">
+                <form action="/join/subject" method="post">
+                  
                   <label>Add Subjects:</label>
-                  <select name="subjectId">
-                    <c:forEach var="subject" items="${subjects}">
-                      <option value="${subject.id}">
+                  <select name="subID">
+                    <c:forEach var="subject" items="${othersubjects}">
+                      <option value="${subject.id}"name="subID">
                         <c:out value="${subject.name}"></c:out>
                       </option>
                     </c:forEach>
@@ -56,7 +56,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach var="subject" items="${subjects}">
+                    <c:forEach var="subject" items="${Subjects}">
                       <tr>
                         <td scope="row"> <a href="/subject/${subject.id}">
                             <c:out value="${subject.title}"></c:out>

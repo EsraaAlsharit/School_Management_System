@@ -25,7 +25,7 @@
             <div class="cont1">
               <div class="topnav">
                 <div class="lefnav">
-                  <h4>Welcome, <c:out value="${teacher.fName}"></c:out>!</h4>
+                  <h4>Welcome, ${Teacher.fName}!</h4>
                 </div>
                 <div class="rightnav">
                   <a href="/logout" class="btn btn-primary">Logout</a>
@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <c:forEach var="subject" items="${subjects}">
+                        <c:forEach var="subject" items="${subject}">
                           <td>
                             <a href="#">
                               <c:out value="${subject.title}" />
@@ -52,7 +52,6 @@
                           </td>
                           <td></td>
                         </c:forEach>
-
                       </tr>
                     </tbody>
                   </table>

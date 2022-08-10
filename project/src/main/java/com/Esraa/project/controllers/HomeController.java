@@ -233,5 +233,11 @@ public class HomeController {
         }
         return "redirect:/index";
     }
-
+//---------------------------------------Join teacher and subject----------------
+    @PostMapping("/join/teacher/{id}")
+    public String teacherJoin(@PathVariable("id")Long id,@RequestParam("joinTeacher")Long tId) {
+    	Teacher teacher =teacherService.findTeacherBy(tId);
+		subService.join(id, teacher);
+    	return"redirect:/index";
+	}
 }

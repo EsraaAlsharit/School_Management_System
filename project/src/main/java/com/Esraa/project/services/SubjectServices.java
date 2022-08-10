@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.Esraa.project.models.Subject;
+import com.Esraa.project.models.Teacher;
 import com.Esraa.project.repositories.SubjectRepository;
 
 @Service
@@ -33,6 +35,13 @@ public class SubjectServices {
 
 	public void creatSubject(Subject subject) {
 		subjectRepository.save(subject);
+	}
+	//join function
+	public void join(Long id , Teacher teacher) {
+		Subject sub= findSubjectBy(id);
+		sub.setTeacher(teacher);
+		subjectRepository.save(sub);
+		
 	}
 
 }

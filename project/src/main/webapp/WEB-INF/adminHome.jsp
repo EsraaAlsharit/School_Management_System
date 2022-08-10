@@ -165,9 +165,34 @@
                                                     <td>
                                                         <c:out value="${subject.students.size()}" />
                                                     </td>
+                                                    <c:choose>
+                                                    <c:when test="${subject.teacher.id!=null}">
                                                     <td>
                                                         <c:out value="${subject.teacher.fName}" />
                                                     </td>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <td>
+                                                        <form action="/join/teacher/${subject.id}" method="post" class="row">
+                                                            <div class="form-group col-6">
+                                                                <select name="joinTeacher" class="form-control">
+                                                       <c:forEach var="teacher" items="${teachers}">
+                                                                    <option value="${teacher.id}">${teacher.fName}</option>
+                                                       </c:forEach>
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                            <div class=" col-6">
+                                                                <input type="submit" value="Assign"
+                                                                    class="btn btn-secondary">
+                                                            </div>
+                                                        </form>
+                                                       
+                                            
+                                                    </td>
+                                                    
+                                                    </c:otherwise>
+                                                    </c:choose>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

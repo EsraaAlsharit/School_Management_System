@@ -20,147 +20,160 @@
                 </head>
 
                 <body>
-                    <div class="cont">
-                        <div class="cont1">
-                            <div class="topnav">
-                                <div class="lefnav">
-                                    <h4>Welcome, <c:out value="${manger.userName}"></c:out>!</h4>
-                                </div>
-                                <div class="rightnav">
-                                    <a href="/logout" class="btn btn-primary">Logout</a>
-                                </div>
-                            </div>
+                    <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+                        <a class="navbar-brand" href="#">School System</a>
+
+                        <div class="d-flex justify-content-between">
+                            <a class="nav-link text-secondary" aria-current="page" href="/add/subject">Add Subject</a>
+
+                            <a class="nav-link text-secondary" href="/logout">Logout</a>
                         </div>
-                        <div class="body">
-
-                            <div class="user">
-                                <h3>Users</h3>
-                                <table id="table" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Full Name</th>
-                                            <th>Created At</th>
-                                            <th>Select Roles</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="user" items="${users}">
+                    </nav>
+                    <div class="container my-3">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="text-primary">Welcome, <c:out value="${manger.userName}"></c:out>!</h2>
+                        </div>
+                        <div class="">
+                            <div class="container m-3 ">
+                                <div class="user">
+                                    <h3>Users</h3>
+                                    <table id="table" class="table table-striped table-bordered text-center">
+                                        <thead class="table-primary">
                                             <tr>
-                                                <td>
-                                                    <a href="user/${user.id}">
-                                                        <c:out value="${user.fName} ${user.lName}" />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${user.createdAt}" />
-                                                </td>
-                                                <td>
-                                                    <form action="/role/${user.id}" method="post">
-                                                        <select name="role">
-                                                            <option value="student">Student</option>
-                                                            <option value="teacher">Teacher</option>
-                                                        </select>
-                                                        <input type="submit" value="Assign">
-                                                    </form>
-                                                </td>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Created At</th>
+                                                <th>Select Roles</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="user" items="${users}">
+                                                <tr>
+                                                    <td>
+                                                        <a href="user/${user.id}">
+                                                            <c:out value="${user.fName} ${user.lName}" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${user.email}" />
+                                                    </td>
+                                                    <td>
+                                                        <fmt:formatDate value="${user.createdAt}"
+                                                            pattern="dd MMM yyyy" />
 
-                            <div class="Students">
-                                <h3>Students</h3>
-                                <table id="table" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>number of subjects</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="student" items="${students}">
+                                                    </td>
+                                                    <td>
+                                                        <form action="/role/${user.id}" method="post" class="row">
+                                                            <div class="form-group col-6">
+                                                                <select name="role" class="form-control">
+                                                                    <option value="student">Student</option>
+                                                                    <option value="teacher">Teacher</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class=" col-6">
+                                                                <input type="submit" value="Assign"
+                                                                    class="btn btn-secondary">
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="Students">
+                                    <h3>Students</h3>
+                                    <table id="table" class="table table-striped table-bordered text-center">
+                                        <thead class="table-primary">
                                             <tr>
-                                                <td>
-                                                    <a href="Student/${student.id}">
-                                                        <c:out value="${student.fName} ${student.lName}" />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${student.email}" />
-                                                </td>
-                                                <td>
-                                                    <c:out value="${student.subjects.size()}" />
-                                                </td>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>number of subjects</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- problem not working -->
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="student" items="${students}">
+                                                <tr>
+                                                    <td>
+                                                        <a href="Student/${student.id}">
+                                                            <c:out value="${student.fName} ${student.lName}" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${student.email}" />
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${student.subjects.size()}" />
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                            <div class="Teachers">
-                                <h3>Teachers</h3>
-                                <table id="table" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>number of subjects</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="teacher" items="${teachers}">
+
+                                <div class="Teachers">
+                                    <h3>Teachers</h3>
+                                    <table id="table" class="table table-striped table-bordered text-center">
+                                        <thead class="table-primary">
                                             <tr>
-                                                <td>
-                                                    <a href="Teacher/">
-                                                        <c:out value="${teacher.fName} ${teacher.lName}" />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${teacher.email}" />
-                                                </td>
-                                                <td>
-                                                    <c:out value="${teacher.subjects.size()}" />
-                                                </td>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>number of subjects</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="teacher" items="${teachers}">
+                                                <tr>
+                                                    <td>
+                                                        <a href="Teacher/">
+                                                            <c:out value="${teacher.fName} ${teacher.lName}" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${teacher.email}" />
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${teacher.subjects.size()}" />
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                            <div class="Courses">
-                                <h3>Courses</h3>
-                                <table id="table" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Number of students</th>
-                                            <th>Teacher</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="subject" items="${subjects}">
+                                <div class="Courses">
+                                    <h3>Courses</h3>
+                                    <table id="table" class="table table-striped table-bordered text-center">
+                                        <thead class="table-primary">
                                             <tr>
-                                                <td>
-                                                    <a href="subject/${subject.id}">
-                                                        <c:out value="${subject.title}" />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subject.students.size()}" />
-                                                </td>
-                                                <td>
-                                                    <c:out value="${subject.teacher.fName}" />
-                                                </td>
+                                                <th>Title</th>
+                                                <th>Number of students</th>
+                                                <th>Teacher</th>
                                             </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="subject" items="${subjects}">
+                                                <tr>
+                                                    <td>
+                                                        <a href="subject/${subject.id}">
+                                                            <c:out value="${subject.title}" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subject.students.size()}" />
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${subject.teacher.fName}" />
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <!-- /problem not working -->
-
                         </div>
                     </div>
                 </body>

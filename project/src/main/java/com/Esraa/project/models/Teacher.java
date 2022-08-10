@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -28,12 +27,10 @@ public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty(message = "First name is required!")
+	
 	@Size(min = 3, max = 30, message = "First name must be between 3 and 30 characters")
 	private String fName;
 
-	@NotEmpty(message = "Last name is required!")
 	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
 	private String lName;
 
@@ -41,27 +38,29 @@ public class Teacher {
 	@Email(message = "Please enter a valid email!")
 	private String email;
 
-	@NotEmpty(message = "Password is required!")
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
 	private String password;
-
-	@Transient
-	@NotEmpty(message = "Confirm Password is required!")
-	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
-	private String confirm;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
+
 	// relations
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Subject> subjects;
-	// other getters and setters removed for brevity
 
 	public Teacher() {
 
+	}
+
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Subject subject) {
+		this.subjects.add(subject);
 	}
 
 	public String getfName() {
@@ -94,14 +93,6 @@ public class Teacher {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
 	}
 
 	public Date getCreatedAt() {

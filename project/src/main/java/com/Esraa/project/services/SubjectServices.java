@@ -14,7 +14,7 @@ public class SubjectServices {
 	@Autowired
 	SubjectRepository subjectRepository;
 
-	public Subject findGuardianBy(Long id) {
+	public Subject findSubjectBy(Long id) {
 		Optional<Subject> optionalExpense = subjectRepository.findById(id);
 		if (optionalExpense.isPresent()) {
 			return optionalExpense.get();
@@ -23,7 +23,7 @@ public class SubjectServices {
 		}
 	}
 
-	public List<Subject> findSubjects() {
+	public List<Subject> AllSubjects() {
 		return subjectRepository.findAll();
 	}
 

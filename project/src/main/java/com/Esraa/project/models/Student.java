@@ -47,14 +47,17 @@ public class Student {
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
 	private String password;
 
-	@Transient
-	@NotEmpty(message = "Confirm Password is required!")
-	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
-	private String confirm;
-
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "subjects_students", inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjects;
+
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Subject subject) {
+		this.subjects.add(subject);
+	}
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -65,7 +68,6 @@ public class Student {
 	public Student() {
 
 	}
-
 
 	public String getfName() {
 		return fName;
@@ -97,14 +99,6 @@ public class Student {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
 	}
 
 	public Date getCreatedAt() {

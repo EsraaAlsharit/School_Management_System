@@ -4,12 +4,15 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Esraa.project.models.LoginManager;
 import com.Esraa.project.models.LoginUser;
@@ -60,9 +63,12 @@ public class HomeController {
 
     @GetMapping("/logout")
     public String logout(Model model, HttpSession session) {
-        if (session.getAttribute("user_id") != null) {
-            session.removeAttribute("user_id");
-            // session.invalidate();//destroy all
+        if (session.getAttribute("user_id") != null
+                || session.getAttribute("teacher_id") != null
+                || session.getAttribute("student_id") != null
+                || session.getAttribute("admin_id") != null) {
+            // session.removeAttribute("user_id");
+            session.invalidate();// destroy all
             return "redirect:/";
         } else {
             return "redirect:/";
@@ -112,12 +118,17 @@ public class HomeController {
         if (session.getAttribute("admin_id") != null) {
             Manager manager = ManagerServ.findManagerBy((Long) session.getAttribute("admin_id"));
             model.addAttribute("manger", manager);
+            model.addAttribute("students", studentService.allStudents());
+            model.addAttribute("users", userServ.AllUsers());
+            model.addAttribute("subjects", subService.AllSubjects());
+            model.addAttribute("teachers", teacherService.allTeachers());
             return "adminHome.jsp";
         } else {
             return "redirect:/";
         }
     }
-//admin || manager
+
+    // admin || manager
     @GetMapping("/admin")
     public String adminForm(Model model, HttpSession session) {
         if (session.getAttribute("user_id") == null
@@ -155,7 +166,7 @@ public class HomeController {
         session.setAttribute("admin_id", manger.getId());
         return "redirect:/";
     }
-    //subject
+    // subject
 
     @GetMapping("/add/subject")
     public String newSubject(@ModelAttribute("subject") Subject subject, Model model) {
@@ -170,6 +181,29 @@ public class HomeController {
             subService.creatSubject(subject);
             return "teacherHome.jsp";
         }
+    }
+
+    @PostMapping("/role/{id}")
+    public String newSubject(@PathVariable("id") Long id, @RequestParam("role") String role, Model model) {
+        User user = userServ.findUserBy(id);
+        if (role.equals("student")) {
+            Student student = new Student();
+            student.setEmail(user.getEmail());
+            student.setfName(user.getfName());
+            student.setlName(user.getlName());
+            student.setPassword(user.getPassword());
+            studentService.createStudent(student);
+            userServ.deleteUser(id);
+        } else if (role.equals("teacher")) {
+            Teacher teacher = new Teacher();
+            teacher.setEmail(user.getEmail());
+            teacher.setfName(user.getfName());
+            teacher.setlName(user.getlName());
+            teacher.setPassword(user.getPassword());
+            teacherService.createTeacher(teacher);
+            userServ.deleteUser(id);
+        }
+        return "redirect:/index";
     }
 
 }

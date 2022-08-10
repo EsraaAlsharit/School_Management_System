@@ -27,11 +27,9 @@ public class UserService {
 	@Autowired
 	TeacherRepository teacherRepository;
 
-	public List<User> findAllUsers() {
+	public List<User> AllUsers() {
 		return userRepo.findAll();
 	}
-
-	
 
 	public User findUserBy(Long id) {
 		Optional<User> optionalTeacher = userRepo.findById(id);
@@ -54,7 +52,7 @@ public class UserService {
 
 	}
 
-	public void deleteTeacher(Long id) {
+	public void deleteUser(Long id) {
 		userRepo.deleteById(id);
 	}
 

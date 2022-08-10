@@ -33,6 +33,10 @@ public class StudentServices {
 		return studentRepository.save(b);
 	}
 
+	// public int subjectsCount(Student b) {
+	// 	return studentRepository.countBySubjects(b);
+	// }
+
 	// retrieves a student
 	public Student findStudentBy(Long id) {
 		Optional<Student> optionalStudent = studentRepository.findById(id);

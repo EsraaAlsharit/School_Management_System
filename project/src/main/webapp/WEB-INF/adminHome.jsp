@@ -33,77 +33,121 @@
                         </div>
                         <div class="body">
                             <div>
+                                <h3>Users</h3>
                                 <table id="table" class="table table-striped">
-                                    <c:forEach var="#" items="#">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Users</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row"> <a href="#">
-                                                        <c:out value=""></c:out>
-                                                    </a></td>
-                                            </tr>
-                                        </tbody>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                            <div>
-                                <c:forEach var="#" items="#">
                                     <thead>
-                                        <table id="table" class="table table-striped">
-                                            <tr>
-                                                <th scope="col">Students</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>Created At</th>
+                                            <th>Select Roles</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td scope="row"> <a href="#">
-                                                    <c:out value=""></c:out>
-                                                </a></td>
-                                        </tr>
+                                        <c:forEach var="user" items="${users}">
+                                            <tr>
+                                                <td>
+                                                    <a href="user/${user.id}">
+                                                        <c:out value="${user.fName} ${user.lName}" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${user.createdAt}" />
+                                                </td>
+                                                <td>
+                                                    <form action="/role/${user.id}" method="post">
+                                                        <select name="role">
+                                                            <option value="student">Student</option>
+                                                            <option value="teacher">Teacher</option>
+                                                        </select>
+                                                        <input type="submit" value="Assign">
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
-                                </c:forEach>
+                                </table>
+                            </div>
+
+                            <div class="Students">
+                                <h3>Students</h3>
+                                <table id="table" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>number of subjects</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="student" items="${students}">
+                                            <tr>
+                                                <td>
+                                                    <a href="Student/${student.id}">
+                                                        <c:out value="${student.fName} ${student.lName}" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${student.email}" />
+                                                </td>
+                                                <td>
+                                                    <c:out value="${student.subjects.size()}" />
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="Teachers">
+                                <h3>Teachers</h3>
+                                <table id="table" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Full Name</th>
+                                            <th>number of subjects</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="teacher" items="teachers">
+                                            <tr>
+                                                <td>
+                                                    <a href="Teacher/">
+                                                        <c:out value="${teacher.fName} ${teacher.lName}" />
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${teacher.subjects.size()}" />
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
                                 </table>
                             </div>
                             <div>
+                                <h3>Courses</h3>
                                 <table id="table" class="table table-striped">
-                                    <c:forEach var="#" items="#">
-                                        <thead>
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Number of students</th>
+                                            <th>Number of teachers</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="subject" items="subjects">
                                             <tr>
-                                                <th scope="col">Teachers</th>
+                                                <td>
+                                                    <a href="subject/${subject}">
+                                                        <c:out value="${subject.title}" />
+                                                    </a>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row"> <a href="#">
-                                                        <c:out value=""></c:out>
-                                                    </a></td>
-                                            </tr>
-                                        </tbody>
-                                    </c:forEach>
+                                        </c:forEach>
+                                    </tbody>
                                 </table>
                             </div>
-                            <div>
-                                <table id="table" class="table table-striped">
-                                    <c:forEach var="#" items="#">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Courses</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row"> <a href="#">
-                                                        <c:out value=""></c:out>
-                                                    </a></td>
-                                            </tr>
-                                        </tbody>
-                                    </c:forEach>
-                                </table>
-                            </div>
+
                         </div>
                     </div>
                 </body>

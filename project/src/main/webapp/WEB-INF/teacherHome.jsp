@@ -20,42 +20,50 @@
           <link rel="stylesheet" href="/css/style.css" />
         </head>
 
-        <body>
-          <div class="cont">
-            <div class="cont1">
-              <div class="topnav">
-                <div class="lefnav">
-                  <h4>Welcome, ${Teacher.fName}!</h4>
-                </div>
-                <div class="rightnav">
-                  <a href="/logout" class="btn btn-primary">Logout</a>
-                </div>
-              </div>
+        <body class="bg-light">
+          <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+            <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+            <div class="d-flex justify-content-between">
+              <a class="nav-link text-secondary" href="/index">Home</a>
+
+              <a class="nav-link text-secondary" href="/logout">Logout</a>
             </div>
+          </nav>
+          <div class="container my-3">
+
+
+            <h2 class="text-info">Welcome, ${Teacher.fName}!</h2>
+
+
+
             <div class="body">
               <div class="view">
-                <c:forEach var="#" items="#">
-                  <table id="table" class="table table-striped">
-                    <thead>
+                <table id="table" class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Courses</th>
+                      <th scope="col">Number of students</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <c:forEach var="subject" items="${Teacher.subjects}">
                       <tr>
-                        <th scope="col">Courses</th>
-                        <th scope="col">Number of studnets</th>
+                        <td>
+                          <a href="subject/${subject.id}">
+                            <c:out value="${subject.title}" />
+                          </a>
+                        </td>
+                        <td>
+                          <c:out value="${subject.students.size()}" />
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <c:forEach var="subject" items="${subject}">
-                          <td>
-                            <a href="#">
-                              <c:out value="${subject.title}" />
-                            </a>
-                          </td>
-                          <td></td>
-                        </c:forEach>
-                      </tr>
-                    </tbody>
-                  </table>
-                </c:forEach>
+                    </c:forEach>
+                  </tbody>
+                </table>
+
               </div>
             </div>
           </div>

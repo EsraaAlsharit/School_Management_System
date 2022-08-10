@@ -34,9 +34,6 @@
                         <h2>Welcome ${User.fName}</h2>
                         <p>you have to wait until approval for the Manger of the school</h2>
                         </p>
-
-
-
                     </div>
                 </body>
 

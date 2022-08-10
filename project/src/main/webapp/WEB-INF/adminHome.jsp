@@ -14,17 +14,19 @@
                     <!-- For any Bootstrap that uses JS or jQuery-->
                     <script src="/webjars/jquery/jquery.min.js"></script>
                     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-                    <title>Home</title>
+                    <title>Admin Home</title>
                     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
                     <link rel="stylesheet" href="/css/style.css" />
                 </head>
 
-                <body>
+                <body class="bg-light">
                     <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
 
                         <a class="navbar-brand" href="#">School System</a>
 
                         <div class="d-flex justify-content-between">
+                            <a class="nav-link text-secondary" href="/index">Home</a>
+
                             <a class="nav-link text-secondary" aria-current="page" href="/add/subject">Add Subject</a>
 
                             <a class="nav-link text-secondary" href="/logout">Logout</a>
@@ -90,7 +92,7 @@
                                             <tr>
                                                 <th>Full Name</th>
                                                 <th>Email</th>
-                                                <th>number of subjects</th>
+                                                <th>Number of subjects</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -121,7 +123,7 @@
                                             <tr>
                                                 <th>Full Name</th>
                                                 <th>Email</th>
-                                                <th>number of subjects</th>
+                                                <th>Number of subjects</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -166,32 +168,35 @@
                                                         <c:out value="${subject.students.size()}" />
                                                     </td>
                                                     <c:choose>
-                                                    <c:when test="${subject.teacher.id!=null}">
-                                                    <td>
-                                                        <c:out value="${subject.teacher.fName}" />
-                                                    </td>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                    <td>
-                                                        <form action="/join/teacher/${subject.id}" method="post" class="row">
-                                                            <div class="form-group col-6">
-                                                                <select name="joinTeacher" class="form-control">
-                                                       <c:forEach var="teacher" items="${teachers}">
-                                                                    <option value="${teacher.id}">${teacher.fName}</option>
-                                                       </c:forEach>
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                            <div class=" col-6">
-                                                                <input type="submit" value="Assign"
-                                                                    class="btn btn-secondary">
-                                                            </div>
-                                                        </form>
-                                                       
-                                            
-                                                    </td>
-                                                    
-                                                    </c:otherwise>
+                                                        <c:when test="${subject.teacher.id!=null}">
+                                                            <td>
+                                                                <c:out value="${subject.teacher.fName}" />
+                                                            </td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td>
+                                                                <form action="/join/teacher/${subject.id}" method="post"
+                                                                    class="row">
+                                                                    <div class="form-group col-6">
+                                                                        <select name="joinTeacher" class="form-control">
+                                                                            <c:forEach var="teacher"
+                                                                                items="${teachers}">
+                                                                                <option value="${teacher.id}">
+                                                                                    ${teacher.fName}</option>
+                                                                            </c:forEach>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class=" col-6">
+                                                                        <input type="submit" value="Assign"
+                                                                            class="btn btn-secondary">
+                                                                    </div>
+                                                                </form>
+
+
+                                                            </td>
+
+                                                        </c:otherwise>
                                                     </c:choose>
                                                 </tr>
                                             </c:forEach>

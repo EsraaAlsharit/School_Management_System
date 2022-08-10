@@ -32,7 +32,8 @@
                             </div>
                         </div>
                         <div class="body">
-                            <div>
+
+                            <div class="user">
                                 <h3>Users</h3>
                                 <table id="table" class="table table-striped">
                                     <thead>
@@ -97,7 +98,7 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                            <!-- problem not working -->
 
                             <div class="Teachers">
                                 <h3>Teachers</h3>
@@ -124,7 +125,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
+
+                            <div class="Courses">
                                 <h3>Courses</h3>
                                 <table id="table" class="table table-striped">
                                     <thead>
@@ -147,6 +149,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <!-- /problem not working -->
 
                         </div>
                     </div>

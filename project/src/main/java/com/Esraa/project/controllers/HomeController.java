@@ -155,6 +155,25 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/teacher/{id}")
+    public String Teacher(Model model, HttpSession session,@PathVariable("id") Long id) {
+        if (session.getAttribute("admin_id") == null) {
+            model.addAttribute("teacher", teacherService.findTeacherBy(id));
+            return "Teacher.jsp";
+        } else {
+            return "redirect:/index";
+        }
+    }
+    @GetMapping("/student/{id}")
+    public String Student(Model model, HttpSession session,@PathVariable("id") Long id) {
+        if (session.getAttribute("admin_id") == null) {
+            model.addAttribute("student", studentService.findStudentBy(id));
+            return "Student.jsp";
+        } else {
+            return "redirect:/index";
+        }
+    }
+
     @PostMapping("/register/admin")
     public String adminRegister(@Valid @ModelAttribute("newUser") Manager manger,
             BindingResult result, Model model, HttpSession session) {

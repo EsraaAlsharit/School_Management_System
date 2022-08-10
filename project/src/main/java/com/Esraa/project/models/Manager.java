@@ -52,20 +52,20 @@ public class Manager {
 	// characters")
 	// private String lname;
 
-	@NotEmpty(message = "Last name is required!")
-	@Size(min = 3, max = 30, message = "Last name must be between 3 and 30 characters")
+	// @NotEmpty(message = "Last name is required!")
+	@Size(min = 3, max = 30, message = "userName must be between 3 and 30 characters")
 	private String userName;
 
 	// @NotEmpty(message = "Email is required!")
 	// @Email(message = "Please enter a valid email!")
 	// private String email;
 
-	@NotEmpty(message = "Password is required!")
+	// @NotEmpty(message = "Password is required!")
 	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
 	private String password;
 
 	@Transient
-	@NotEmpty(message = "Confirm Password is required!")
+	// @NotEmpty(message = "Confirm Password is required!")
 	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 
@@ -128,27 +128,27 @@ public class Manager {
 	}
 
 	// public String getFname() {
-	// 	return fname;
+	// return fname;
 	// }
 
 	// public void setFname(String fname) {
-	// 	this.fname = fname;
+	// this.fname = fname;
 	// }
 
 	// public String getLname() {
-	// 	return lname;
+	// return lname;
 	// }
 
 	// public void setLname(String lname) {
-	// 	this.lname = lname;
+	// this.lname = lname;
 	// }
 
 	// public String getEmail() {
-	// 	return email;
+	// return email;
 	// }
 
 	// public void setEmail(String email) {
-	// 	this.email = email;
+	// this.email = email;
 	// }
 
 	public String getPassword() {

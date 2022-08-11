@@ -21,6 +21,7 @@
         </head>
 
         <body>
+<<<<<<< Updated upstream
           <div class="cont">
             <div class="cont1">
               <div class="topnav">
@@ -50,26 +51,79 @@
               <div class="viewcourses">
                 <table id="table" class="table table-striped">
                   <thead>
+=======
+          <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+            <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+            <div class="d-flex justify-content-between">
+              <a class="nav-link text-secondary" href="/index">Home</a>
+
+              <a class="nav-link text-secondary" href="/logout">Logout</a>
+            </div>
+          </nav>
+          <div class="container my-3">
+            <h2 class="text-info">Welcome, <c:out value="${Student.fName}"></c:out>!</h2>
+
+            <div class="row my-5">
+
+              <div class="col-8">
+                <table id="table" class="table table-striped table-bordered text-center">
+                  <thead class="table-primary">
+>>>>>>> Stashed changes
                     <tr>
                       <th scope="col">Subject</th>
                       <th scope="col">Teacher</th>
                     </tr>
                   </thead>
                   <tbody>
+<<<<<<< Updated upstream
                     <c:forEach var="subject" items="${Subjects}">
+=======
+                    <c:forEach var="subject" items="${Student.subjects}">
+>>>>>>> Stashed changes
                       <tr>
-                        <td scope="row"> <a href="/subject/${subject.id}">
+                        <td> <a href="/subject/${subject.id}">
                             <c:out value="${subject.title}"></c:out>
                           </a></td>
                         <td>
-                          <c:out value="${subject.teacher}"></c:out>
+                          <c:if test="${subject.teacher.fName != null}">
+                            <a href="/Teacher/${subject.teacher.id}">
+                              <c:out value="${subject.teacher.fName} ${subject.teacher.lName}"></c:out>
+                            </a>
+                          </c:if>
+                          <c:if test="${subject.teacher.fName == null}">
+                            Announce Later
+                          </c:if>
                         </td>
                       </tr>
                     </c:forEach>
                   </tbody>
                 </table>
               </div>
+
+              <div class="col-4">
+                <form action="/join/subject" method="post">
+                  <label>Add Subjects:</label>
+                  <div class="row align-items-center">
+                    <div class="form-group my-3 col-7">
+                      <select name="subjectId" class="form-control">
+                        <c:forEach var="subject" items="${otherSubjects}">
+                          <option value="${subject.id}">
+                            <c:out value="${subject.title}" />
+                          </option>
+                        </c:forEach>
+                      </select>
+                    </div>
+                    <div class="col-3">
+                      <input type="submit" value="Add" class="btn btn-success">
+                    </div>
+                  </div>
+
+                </form>
+              </div>
             </div>
+          </div>
           </div>
         </body>
 

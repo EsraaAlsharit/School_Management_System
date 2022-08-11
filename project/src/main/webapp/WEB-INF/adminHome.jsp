@@ -130,7 +130,7 @@
                                             <c:forEach var="teacher" items="${teachers}">
                                                 <tr>
                                                     <td>
-                                                        <a href="Teacher/">
+                                                        <a href="Teacher/${teacher.id}">
                                                             <c:out value="${teacher.fName} ${teacher.lName}" />
                                                         </a>
                                                     </td>

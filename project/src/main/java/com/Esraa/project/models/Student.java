@@ -48,7 +48,7 @@ public class Student {
 	private String password;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "subjects_students", inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "subject_id"))
+	@JoinTable(name = "subjects_students", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjects;
 
 	public List<Subject> getSubjects() {

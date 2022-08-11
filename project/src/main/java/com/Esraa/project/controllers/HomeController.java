@@ -1,5 +1,7 @@
 package com.Esraa.project.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -47,8 +49,8 @@ public class HomeController {
     @Autowired
     SubjectServices subService;
 
-    @GetMapping("/")
-    public String index(Model model, HttpSession session) {
+    @GetMapping("/") // login
+    public String welcome(Model model, HttpSession session) {
         if (session.getAttribute("user_id") == null
                 && session.getAttribute("teacher_id") == null
                 && session.getAttribute("student_id") == null
@@ -98,8 +100,8 @@ public class HomeController {
         return "redirect:/index";
     }
 
-    @GetMapping("/index") // add form
-    public String New(Model model, HttpSession session) {
+    @GetMapping("/index") // index
+    public String index(Model model, HttpSession session) {
         if (session.getAttribute("user_id") != null) {
             User user = userServ.findUserBy((Long) session.getAttribute("user_id"));
             model.addAttribute("User", user);
@@ -114,7 +116,11 @@ public class HomeController {
         if (session.getAttribute("student_id") != null) {
             Student student = studentService.findStudentBy((Long) session.getAttribute("student_id"));
             model.addAttribute("Student", student);
+            model.addAttribute("otherSubjects", subService.otherSubject(student));
+            // model.addAttribute("Subjects",
+            // subService.allSubjectByStudent(student.getId()));
             return "studentHome.jsp";
+
         }
         if (session.getAttribute("admin_id") != null) {
             Manager manager = ManagerServ.findManagerBy((Long) session.getAttribute("admin_id"));
@@ -156,8 +162,6 @@ public class HomeController {
         return "redirect:/";
     }
 
-
-
     @PostMapping("/register/admin")
     public String adminRegister(@Valid @ModelAttribute("newUser") Manager manger,
             BindingResult result, Model model, HttpSession session) {
@@ -171,7 +175,7 @@ public class HomeController {
     }
     // subject
 
-    @GetMapping("/add/subject")
+    @GetMapping("/add/subject") // add subject form
     public String newSubject(@ModelAttribute("subject") Subject subject, Model model, HttpSession session) {
         if (session.getAttribute("admin_id") != null) {
             return "addSubject.jsp";
@@ -215,17 +219,33 @@ public class HomeController {
         }
         return "redirect:/index";
     }
-//---------------------------------------Join teacher and subject----------------
-    @PostMapping("/join/teacher/{id}")
-    public String teacherJoin(@PathVariable("id")Long id,@RequestParam("joinTeacher")Long tId) {
-    	Teacher teacher =teacherService.findTeacherBy(tId);
-		subService.join(id, teacher);
-    	return"redirect:/index";
-	}
 
-    @GetMapping("/teacher/{id}")
+    // ---------------------------------------Join teacher and
+    // subject----------------
+    @PostMapping("/join/teacher/{id}")
+    public String teacherJoin(@PathVariable("id") Long id, @RequestParam("joinTeacher") Long tId) {
+        Teacher teacher = teacherService.findTeacherBy(tId);
+        subService.join(id, teacher);
+        return "redirect:/index";
+    }
+
+    @PostMapping("/join/subject")
+    public String joinsub(Model model, @RequestParam("subjectId") Long id, HttpSession session) {
+
+        Student student = studentService.findStudentBy((long) session.getAttribute("student_id"));
+        Subject subject = subService.findSubjectBy(id);
+        System.out.println(student.getSubjects().size());
+        studentService.addSubjects(subject, student);
+        return "redirect:/index";
+
+    }
+
+    @GetMapping("/Teacher/{id}") // Teacher View
     public String Teacher(Model model, HttpSession session, @PathVariable("id") Long id) {
-        if (session.getAttribute("admin_id") != null) {
+        if (session.getAttribute("user_id") != null
+                || session.getAttribute("teacher_id") != null
+                || session.getAttribute("student_id") != null
+                || session.getAttribute("admin_id") != null) {
             model.addAttribute("teacher", teacherService.findTeacherBy(id));
             return "viewTeacher.jsp";
         } else {
@@ -233,20 +253,27 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/student/{id}")
+    @GetMapping("/Student/{id}") // Student View
     public String Student(Model model, HttpSession session, @PathVariable("id") Long id) {
-        if (session.getAttribute("admin_id") != null) {
+        if (session.getAttribute("user_id") != null
+                || session.getAttribute("teacher_id") != null
+                || session.getAttribute("student_id") != null
+                || session.getAttribute("admin_id") != null) {
             model.addAttribute("student", studentService.findStudentBy(id));
             return "viewStudent.jsp";
         } else {
             return "redirect:/index";
         }
     }
-    @GetMapping("/subject/{id}")
+
+    @GetMapping("/subject/{id}") // Subject View
     public String Subject(Model model, HttpSession session, @PathVariable("id") Long id) {
-        if (session.getAttribute("admin_id") != null) {
+        if (session.getAttribute("user_id") != null
+                || session.getAttribute("teacher_id") != null
+                || session.getAttribute("student_id") != null
+                || session.getAttribute("admin_id") != null) {
             model.addAttribute("subject", subService.findSubjectBy(id));
-            return "viewCourse.jsp";
+            return "viewSubject.jsp";
         } else {
             return "redirect:/index";
         }

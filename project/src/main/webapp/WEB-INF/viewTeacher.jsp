@@ -15,49 +15,60 @@
           <script src="/webjars/jquery/jquery.min.js"></script>
           <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-          <title>Home</title>
+          <title>Teacher View</title>
           <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
           <link rel="stylesheet" href="/css/style.css" />
         </head>
 
         <body>
-          <div class="cont">
-            <div class="cont1">
-              <div class="topnav">
-                <div class="lefnav">
-                  <h4>Welcome, <c:out value="${student.fName}"></c:out>!</h4>
-                </div>
-                <div class="rightnav">
-                  <a href="/logout" class="btn btn-primary">Logout</a>
-                </div>
-              </div>
+          <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
+
+            <h1 class="navbar-brand text-primary" href="#">School System</h1>
+
+            <div class="d-flex justify-content-between">
+              <a class="nav-link text-secondary" href="/index">Home</a>
+
+              <a class="nav-link text-secondary" href="/logout">Logout</a>
             </div>
-            <div class="body">
-             <h1>Teacher's Name: <c:out value="${teacher.fName} ${teacher.lName}"/></h1>
-             <h2>Teacher's Subjects</h2>
-             <table>
-                <table id="table" class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Number of Students</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="subject" items="${teacher.subjects}">
-                        <tr>
-                          <td scope="row"> <a href="/subject/${subject.id}">
-                              <c:out value="${subject.title}"></c:out>
-                            </a></td>
-                          <td>
-                            <c:out value="${subject.teacher}"></c:out>
-                          </td>
-                        </tr>
-                      </c:forEach>
-                    </tbody>
-                  </table>
-             </table>
-            </div>
+          </nav>
+
+          <div class="container my-3">
+
+
+            <h2 class="text-info">
+              <c:out value="${teacher.fName} ${teacher.lName}" />
+            </h2>
+            <p>
+              <b>
+                Email
+              </b>
+              <c:out value="${teacher.email}" />
+            </p>
+
+            <h3>Subjects</h3>
+            <table>
+              <table id="table" class="table table-striped table-bordered text-center">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Number of Students</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach var="subject" items="${teacher.subjects}">
+                    <tr>
+                      <td scope="row"> <a href="/subject/${subject.id}">
+                          <c:out value="${subject.title}" />
+                        </a></td>
+                      <td>
+                        <c:out value="${subject.students.size()}" />
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </table>
+          </div>
           </div>
         </body>
 

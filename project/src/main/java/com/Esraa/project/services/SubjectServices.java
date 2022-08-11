@@ -37,20 +37,21 @@ public class SubjectServices {
 	public void creatSubject(Subject subject) {
 		subjectRepository.save(subject);
 	}
-	//join function
-	public void join(Long id , Teacher teacher) {
-		Subject sub= findSubjectBy(id);
+
+	// join function
+	public void join(Long id, Teacher teacher) {
+		Subject sub = findSubjectBy(id);
 		sub.setTeacher(teacher);
 		subjectRepository.save(sub);
-		
+
 	}
-	
-	public List<Subject> allSubjectByStudent( long id){
-		return subjectRepository.findAllByStudentId(id);
+
+	// public List<Subject> allSubjectByStudent(long id) {
+	// return subjectRepository.findAllByStudentId(id);
+	// }
+
+	public List<Subject> otherSubject(Student student) {
+		return subjectRepository.findByStudentsNotContains(student);
 	}
-	public List<Subject> otherSubject(Student student){
-		return subjectRepository.findByStudentNotContainss(student);
-	}
-	
 
 }

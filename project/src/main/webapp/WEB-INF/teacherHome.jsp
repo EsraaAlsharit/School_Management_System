@@ -15,7 +15,7 @@
           <script src="/webjars/jquery/jquery.min.js"></script>
           <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-          <title>Home</title>
+          <title>Home Teacher</title>
           <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
           <link rel="stylesheet" href="/css/style.css" />
         </head>
@@ -33,39 +33,33 @@
           </nav>
           <div class="container my-3">
 
-
             <h2 class="text-info">Welcome, ${Teacher.fName}!</h2>
+            <div class="">
+              <table id="table" class="table table-striped table-bordered text-center">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">Courses</th>
+                    <th scope="col">Number of students</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-
-
-            <div class="body">
-              <div class="view">
-                <table id="table" class="table table-striped">
-                  <thead>
+                  <c:forEach var="subject" items="${Teacher.subjects}">
                     <tr>
-                      <th scope="col">Courses</th>
-                      <th scope="col">Number of students</th>
+                      <td>
+                        <a href="subject/${subject.id}">
+                          <c:out value="${subject.title}" />
+                        </a>
+                      </td>
+                      <td>
+                        <c:out value="${subject.students.size()}" />
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-
-                    <c:forEach var="subject" items="${Teacher.subjects}">
-                      <tr>
-                        <td>
-                          <a href="subject/${subject.id}">
-                            <c:out value="${subject.title}" />
-                          </a>
-                        </td>
-                        <td>
-                          <c:out value="${subject.students.size()}" />
-                        </td>
-                      </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-
-              </div>
+                  </c:forEach>
+                </tbody>
+              </table>
             </div>
+
           </div>
         </body>
 

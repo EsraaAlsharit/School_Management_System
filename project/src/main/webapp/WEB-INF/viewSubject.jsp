@@ -15,7 +15,7 @@
           <script src="/webjars/jquery/jquery.min.js"></script>
           <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
-          <title>Student View</title>
+          <title>Subject View</title>
           <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
           <link rel="stylesheet" href="/css/style.css" />
         </head>
@@ -31,48 +31,43 @@
               <a class="nav-link text-secondary" href="/logout">Logout</a>
             </div>
           </nav>
-          <div class="container my-3">
-            <h2 class="text-info">
-              <c:out value="${student.fName} ${student.lName}" />
-            </h2>
-            <p>
-              <b>
-                Email
-              </b>
-              <c:out value="${student.email}" />
-            </p>
-            <h3>Subjects</h3>
-            <table>
-              <table id="table" class="table table-striped table-bordered text-center">
-                <thead class="table-primary">
-                  <tr>
-                    <th>Subject</th>
-                    <th>Teacher</th>
-                    <th>Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach var="subject" items="${student.subjects}">
-                    <tr>
-                      <td>
-                        <a href="/subject/${subject.id}">
-                          <c:out value="${subject.title}" />
-                        </a>
-                      </td>
-                      <td>
-                        <a href="/Teacher/${subject.teacher.id}">
-                          <c:out value="${subject.teacher.fName} ${subject.teacher.lName}" />
 
-                        </a>
-                      </td>
-                      <td>
-                        <c:out value="${subject.descc}" />
-                      </td>
-                    </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
+          <div class="container my-3">
+
+            <div class="d-flex justify-content-between">
+              <h2 class="text-info">Title
+                <c:out value="${subject.title}" />
+              </h2>
+              <h3>Taught By
+                <c:out value="${subject.teacher.fName}" />
+              </h3>
+            </div>
+            <br>
+            <h4>Students</h4>
+
+            <table id="table" class="table table-striped table-bordered text-center">
+              <thead class="table-primary">
+                <tr>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <c:forEach var="student" items="${subject.students}">
+                  <tr>
+                    <td>
+                      <a href="/Student/${student.id}">
+                        <c:out value="${student.fName} ${student.lName}" />
+                      </a>
+                    </td>
+                    <td>
+                      <c:out value="${student.email}" />
+                    </td>
+                  </tr>
+                </c:forEach>
+              </tbody>
             </table>
+
           </div>
           </div>
         </body>

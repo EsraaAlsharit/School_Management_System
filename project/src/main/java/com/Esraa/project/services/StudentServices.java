@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import com.Esraa.project.models.LoginUser;
 
 import com.Esraa.project.models.Student;
-
+import com.Esraa.project.models.Subject;
 import com.Esraa.project.repositories.StudentRepository;
 import com.Esraa.project.repositories.TeacherRepository;
 
@@ -34,7 +34,7 @@ public class StudentServices {
 	}
 
 	// public int subjectsCount(Student b) {
-	// 	return studentRepository.countBySubjects(b);
+	// return studentRepository.countBySubjects(b);
 	// }
 
 	// retrieves a student
@@ -45,6 +45,12 @@ public class StudentServices {
 		} else {
 			return null;
 		}
+	}
+
+	public Student addSubjects(Subject subject, Student student) {
+		student.setSubjects(subject);
+		return studentRepository.save(student);
+
 	}
 
 	public Student updateStudent(Long id, Student student) {

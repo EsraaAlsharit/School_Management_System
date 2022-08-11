@@ -33,7 +33,7 @@
 
 
                         <div class="row mx-5">
-                            <div class="col-6">
+                            <!-- div class="col-6">
                                 <h3>Sign Up admin</h3>
                                 <form:form action="/register/admin" method="post" modelAttribute="newUser">
                                     <div class="form-group">
@@ -53,7 +53,7 @@
                                     </div>
                                     <input type="submit" value="Register" class="btn btn-primary my-3" />
                                 </form:form>
-                            </div>
+                            </div-->
                             <div class="col-6">
                                 <h3>Sign In admin</h3>
                                 <form:form action="/login/admin" method="post" modelAttribute="newLogin">

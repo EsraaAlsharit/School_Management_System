@@ -30,7 +30,7 @@
                     </div>
                 </nav>
                 <div class="container my-3">
-                    <h2 class="text-info ">User</h2>
+                    <!-- h2 class="text-info ">User</h2 -->
                     <div class="row align-items-start d-flex justify-content-around mx-5">
                         <div class="col-6 ">
                             <h3 class="my-2">Sign Up</h3>

@@ -21,37 +21,6 @@
         </head>
 
         <body>
-<<<<<<< Updated upstream
-          <div class="cont">
-            <div class="cont1">
-              <div class="topnav">
-                <div class="lefnav">
-                  <h4>Welcome, <c:out value="${Student.fName}"></c:out>!</h4>
-                </div>
-                <div class="rightnav">
-                  <a href="/logout" class="btn btn-primary">Logout</a>
-                </div>
-              </div>
-            </div>
-            <div class="body">
-              <div class="addcourse">
-                <form action="/join/subject" method="post">
-                  
-                  <label>Add Subjects:</label>
-                  <select name="subID">
-                    <c:forEach var="subject" items="${othersubjects}">
-                      <option value="${subject.id}"name="subID">
-                        <c:out value="${subject.name}"></c:out>
-                      </option>
-                    </c:forEach>
-                  </select>
-                  <input type="submit" value="Add">
-                </form>
-              </div>
-              <div class="viewcourses">
-                <table id="table" class="table table-striped">
-                  <thead>
-=======
           <nav class="navbar navbar-light p-3" style="background-color: #e3f2fd;">
 
             <h1 class="navbar-brand text-primary" href="#">School System</h1>
@@ -70,18 +39,13 @@
               <div class="col-8">
                 <table id="table" class="table table-striped table-bordered text-center">
                   <thead class="table-primary">
->>>>>>> Stashed changes
                     <tr>
                       <th scope="col">Subject</th>
                       <th scope="col">Teacher</th>
                     </tr>
                   </thead>
                   <tbody>
-<<<<<<< Updated upstream
-                    <c:forEach var="subject" items="${Subjects}">
-=======
                     <c:forEach var="subject" items="${Student.subjects}">
->>>>>>> Stashed changes
                       <tr>
                         <td> <a href="/subject/${subject.id}">
                             <c:out value="${subject.title}"></c:out>
